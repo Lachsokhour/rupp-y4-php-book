@@ -22,7 +22,7 @@ if (isset($_GET["id"])) {
   <div class="container">
     <div>
       <span>
-        <h1 class="text-center fs">បញ្ចូលសៀវភៅថ្មី</h1>
+        <h1 class="text-center fs"><?php echo $res ? 'កែប្រែសៀវភៅ' : 'បញ្ចូលសៀវភៅថ្មី'; ?></h1>
       </span>
     </div>
     <div class="form">
