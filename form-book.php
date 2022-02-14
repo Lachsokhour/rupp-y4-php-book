@@ -1,3 +1,12 @@
+<?php
+require_once './models/book.php';
+$res = null;
+if (isset($_GET["id"])) {
+  $query = Book::getById($_GET['id']);
+  $res = $query->fetch(PDO::FETCH_ASSOC);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,18 +26,21 @@
       </span>
     </div>
     <div class="form">
-      <form method="post" action="./create-book.php">
+
+      <form method="post" action="./request-book.php">
+        <input type="hidden" name="id" value="<?php echo $res ? $res['id'] : 0 ?>"/>
+
         <label for="code">លេខកូដ</label>
-        <input type="text" id="code" name="code" placeholder="លេខកូដ">
+        <input required type="text" id="code" value="<?php echo $res ? $res['code'] : '' ?>" name="code" placeholder="លេខកូដ">
 
         <label for="title">ចំណងជើង</label>
-        <input type="text" id="title" name="title" placeholder="ចំណងជើង">
+        <input required type="text" id="title" name="title" value="<?php echo $res ? $res['title'] : '' ?>" placeholder="ចំណងជើង">
 
         <label for="author">អ្នកនិពន្ធ</label>
-        <input type="text" id="author" name="author" placeholder="អ្នកនិពន្ធ">
+        <input required type="text" id="author" name="author" value="<?php echo $res ? $res['author'] : '' ?>" placeholder="អ្នកនិពន្ធ">
 
         <label for="year">ឆ្នាំបោះពុម្ព</label>
-        <input type="text" id="year" name="year" placeholder="ឆ្នាំបោះពុម្ព">
+        <input required type="text" id="year" name="year" value="<?php echo $res ? $res['year'] : '' ?>" placeholder="ឆ្នាំបោះពុម្ព">
         <input class="btn" type="submit" value="Submit">
       </form>
     </div>
