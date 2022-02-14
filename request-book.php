@@ -19,4 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       header('location: index.php');
     }
   }
+}else {
+  header('HTTP/1.0 405 Method Not Allowed');
 }
